@@ -22,9 +22,9 @@ public class MyMap<K, V> implements Map<K, V> {
         if (array == null) {
             array = new Node[defaultLength];
         }
-        int index = hashIndex(k,defaultLength);
+        int index = hashIndex(k, defaultLength);
 
-        if (SIZE > defaultLength * factor){
+        if (SIZE > defaultLength * factor) {
 
             array = resize();
         }
@@ -34,22 +34,28 @@ public class MyMap<K, V> implements Map<K, V> {
             array[index] = new Node<>(k, v, null);
             SIZE++;
         } else {
-            if (node.getKey().equals(k) || k == node.getKey()) {
-                return node.setValue(v);
-            } else {
-                array[index] = new Node<>(k, v, node);
-                SIZE++;
+            Node<K, V> next = node;
+            while (next != null) {
+                if (next.getKey().equals(k)) {
+                    System.out.println(next.getKey());
+                    System.out.println(k);
+                    return next.setValue(v);
+                }else {
+                    next = next.next;
+                }
             }
+            array[index] = new Node<>(k, v, node);
+            SIZE++;
         }
         return null;
     }
 
-    private Node<K,V>[] resize() {
+    private Node<K, V>[] resize() {
         defaultLength = defaultLength * 2;
         Node<K, V>[] newArray = new Node[defaultLength];
         for (int i = 0; i < array.length; i++) {
             Node<K, V> node = array[i];
-            while (node != null){
+            while (node != null) {
                 // 计算出新的下标 index
                 int index = hashIndex(node.getKey(), defaultLength);
                 // 保存 下一个节点的指针，防止丢失之后节点
@@ -59,7 +65,7 @@ public class MyMap<K, V> implements Map<K, V> {
                 // 数组 位置替换为节点
                 newArray[index] = node;
                 // 执行下一节点进行重计算
-                node  = next;
+                node = next;
             }
         }
         return newArray;
@@ -78,19 +84,19 @@ public class MyMap<K, V> implements Map<K, V> {
 
     @Override
     public V get(K k) {
-        if (array != null){
-            int index = hashIndex(k,defaultLength);
-              if (array[index] != null){
-                  Node<K, V> node = array[index];
-                  while (node != null){
-                      if (node.getKey() == k){
-                          return node.getValue();
-                      }else {
-                          node = node.next;
-                      }
-                  }
-              }
+        if (array != null) {
+            int index = hashIndex(k, defaultLength);
+            if (array[index] != null) {
+                Node<K, V> node = array[index];
+                while (node != null) {
+                    if (node.getKey() == k) {
+                        return node.getValue();
+                    } else {
+                        node = node.next;
+                    }
+                }
             }
+        }
         return null;
     }
 
@@ -99,20 +105,20 @@ public class MyMap<K, V> implements Map<K, V> {
         return SIZE;
     }
 
-    void printMap(){
-        if (array == null){
+    void printMap() {
+        if (array == null) {
             System.out.println("null");
         }
         for (int i = 0; i < array.length; i++) {
-            System.out.print("下标["+i+"]");
-            if (array[i] != null){
+            System.out.print("下标[" + i + "]");
+            if (array[i] != null) {
                 Node<K, V> node = array[i];
-                while (node != null){
-                    System.out.print("[key:"+node.getKey()+":"+node.getValue()+"]");
+                while (node != null) {
+                    System.out.print("[key:" + node.getKey() + ":" + node.getValue() + "]");
                     node = node.next;
                 }
                 System.out.println();
-            }else {
+            } else {
                 System.out.println();
             }
         }
@@ -150,4 +156,5 @@ public class MyMap<K, V> implements Map<K, V> {
             return oldValue;
         }
     }
+
 }

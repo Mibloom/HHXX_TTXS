@@ -8,10 +8,12 @@ import java.util.HashMap;
  * @date 2020/3/17 21:21
  */
 public class Demo {
+
     public static void main(String[] args) {
-        new HashMap<>();
         MyMap<Integer, String> map = new MyMap<>();
-        map.put(1, "lpk");
+        map.put(1, "lpk1");
+        map.put(17, "lpk17");
+        map.put(33, "lpk33");
         map.put(2, "lpk2");
         map.put(3, "lpk3");
         map.put(4, "lpk4");
@@ -24,16 +26,10 @@ public class Demo {
         map.put(11, "lpk6");
         map.put(12, "lpk6");
         map.put(13, "lpk6");
-        map.put(16, "lpk6");
-        map.put(15, "lpk6");
-        map.put(19, "lpk6");
-        map.put(27, "lpk6");
         map.put(30, "lpk6");
-        map.put(28, "lpk6");
-
+        map.put(15, "lpk6");
+        map.put(1, "lpk121");
 
         map.printMap();
-        System.out.println(map.size());
-        System.out.println(map.get(5));
     }
 }
