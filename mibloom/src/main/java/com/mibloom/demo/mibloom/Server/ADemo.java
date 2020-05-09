@@ -22,7 +22,8 @@ import javax.annotation.PreDestroy;
  */
 @Component
 @Slf4j
-public class ADemo implements BeanNameAware, BeanPostProcessor, InitializingBean, DisposableBean {
+public class ADemo {
+
 
     /**
      * 一.  对象创建
@@ -47,41 +48,41 @@ public class ADemo implements BeanNameAware, BeanPostProcessor, InitializingBean
     }
     @Autowired
     BDemo bDemo;
-
-    @Override
-    public void setBeanName(String s) {
-        log.error(s);
-    }
-
-    @Override
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        log.error("BeanPostProcessor.postProcessBeforeInitialization");
-        return bean;
-    }
-
-    @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        log.error("BeanPostProcessor.postProcessAfterInitialization");
-        return bean;
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        log.error("InitalizingBean.afterPropertiesSet()");
-    }
-
-    @PostConstruct
-    public void init(){
-        log.error("执行Bean自定义的初始化方法init,或者 @PostConstruct 标注的方法；");
-    }
-
-    @Override
-    public void destroy() throws Exception {
-        log.error("执行 DisposableBean.destory() 方法；");
-    }
-
-    @PreDestroy
-    public void myDestory(){
-        log.error("执行自定义的destory方法或者 @PreDestory 标注的方法；");
-    }
+    //
+    //@Override
+    //public void setBeanName(String s) {
+    //    log.error(s);
+    //}
+    //
+    //@Override
+    //public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+    //    log.error("BeanPostProcessor.postProcessBeforeInitialization");
+    //    return bean;
+    //}
+    //
+    //@Override
+    //public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+    //    log.error("BeanPostProcessor.postProcessAfterInitialization");
+    //    return bean;
+    //}
+    //
+    //@Override
+    //public void afterPropertiesSet() throws Exception {
+    //    log.error("InitalizingBean.afterPropertiesSet()");
+    //}
+    //
+    //@PostConstruct
+    //public void init(){
+    //    log.error("执行Bean自定义的初始化方法init,或者 @PostConstruct 标注的方法；");
+    //}
+    //
+    //@Override
+    //public void destroy() throws Exception {
+    //    log.error("执行 DisposableBean.destory() 方法；");
+    //}
+    //
+    //@PreDestroy
+    //public void myDestory(){
+    //    log.error("执行自定义的destory方法或者 @PreDestory 标注的方法；");
+    //}
 }

@@ -1,6 +1,11 @@
 package demo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author lipengke
@@ -9,27 +14,19 @@ import java.util.HashMap;
  */
 public class Demo {
 
-    public static void main(String[] args) {
-        MyMap<Integer, String> map = new MyMap<>();
-        map.put(1, "lpk1");
-        map.put(17, "lpk17");
-        map.put(33, "lpk33");
-        map.put(2, "lpk2");
-        map.put(3, "lpk3");
-        map.put(4, "lpk4");
-        map.put(5, "lpk5");
-        map.put(6, "lpk6");
-        map.put(7, "lpk6");
-        map.put(8, "lpk6");
-        map.put(9, "lpk6");
-        map.put(10, "lpk6");
-        map.put(11, "lpk6");
-        map.put(12, "lpk6");
-        map.put(13, "lpk6");
-        map.put(30, "lpk6");
-        map.put(15, "lpk6");
-        map.put(1, "lpk121");
-
-        map.printMap();
+    public Demo() {
     }
+
+    public static void main(String[] args) {
+        String s = "sd";
+        ReentrantLock lock = new ReentrantLock();
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(10, 200, 60, TimeUnit.MINUTES, new LinkedBlockingQueue<>());
+        HashMap<String, String> hashMap = new HashMap<>(1000);
+        hashMap.put("lpk","123");
+        System.out.println(hashMap.size());
+        ArrayList<String> strings = new ArrayList<>();
+    }
+
+
+
 }

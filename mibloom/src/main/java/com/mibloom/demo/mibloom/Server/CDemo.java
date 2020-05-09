@@ -15,10 +15,11 @@ import org.springframework.stereotype.Component;
 @Setter
 @Getter
 @Slf4j
-public class BDemo  {
+public class CDemo {
     @Autowired
-    private CDemo cDemo;
-    BDemo(){
-        log.error("B 实例化");
+    private ADemo aDemo;
+
+    CDemo(){
+        log.error("C 实例化");
     }
 }
