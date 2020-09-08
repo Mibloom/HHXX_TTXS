@@ -7,7 +7,7 @@ import java.util.HashSet;
  * @description:
  * @date 2020/3/18 22:05
  */
-public class ListNode {
+class ListNode {
     int val;
     ListNode next;
     private ListNode prev;

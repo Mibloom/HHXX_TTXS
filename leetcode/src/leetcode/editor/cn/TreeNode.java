@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * @description:
  * @date 2020/4/26 13:49
  */
-public class TreeNode {
+class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;

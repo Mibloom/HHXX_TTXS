@@ -11,50 +11,53 @@ package leetcode.editor.cn;
 // Related Topics 链表
 
 
+class 反转链表{
+
 //leetcode submit region begin(Prohibit modification and deletion)
 
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- * int val;
- * ListNode next;
- * ListNode(int x) { val = x; }
- * }
- */
-class Solution206 {
-    public ListNode reverseList(ListNode head) {
-        if (head == null){
-            return head;
-        }
-        //ListNode current = head;
-        //ListNode prev = null;
-        //ListNode temp = null;
-        //while (current != null){
-        //    temp = current.next;
-        //    current.next = prev;
-        //    prev = current;
-        //    current = temp;
-        //}
-        //
-        //return prev;
+    /**
+     * Definition for singly-linked list.
+     * class ListNode {
+     * int val;
+     * ListNode next;
+     * ListNode(int x) { val = x; }
+     * }
+     */
+    class Solution {
+        public ListNode reverseList(ListNode head) {
+            if (head == null){
+                return head;
+            }
+            //ListNode current = head;
+            //ListNode prev = null;
+            //ListNode temp = null;
+            //while (current != null){
+            //    temp = current.next;
+            //    current.next = prev;
+            //    prev = current;
+            //    current = temp;
+            //}
+            //
+            //return prev;
 
 
-        //递归
-        ListNode curr = head;
-        ListNode next = curr.next;
-        if (head == null || next == null) {
-            return curr;
+            //递归
+            ListNode curr = head;
+            ListNode next = curr.next;
+            if (head == null || next == null) {
+                return curr;
+            }
+            // 1->2->3->4->5->NULL
+            // 5->4->3->2->1->NULL
+            ListNode node = reverseList(next);
+            next.next = head;
+            head.next = null;
+            return node;
+
         }
-        // 1->2->3->4->5->NULL
-        // 5->4->3->2->1->NULL
-        ListNode node = reverseList(next);
-        next.next = head;
-        head.next = null;
-        return node;
 
     }
 
-}
-
-
 //leetcode submit region end(Prohibit modification and deletion)
+
+}

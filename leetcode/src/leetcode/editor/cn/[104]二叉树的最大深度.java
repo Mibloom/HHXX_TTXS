@@ -20,26 +20,30 @@ import java.util.List;
 // Related Topics 树 深度优先搜索
 
 
+class 二叉树的最大深度{
+
 //leetcode submit region begin(Prohibit modification and deletion)
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- * int val;
- * TreeNode left;
- * TreeNode right;
- * TreeNode(int x) { val = x; }
- * }
- */
-class Solution104 {
-    public int maxDepth(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        int rightHeight = maxDepth(root.right);
-        int leftHeight = maxDepth(root.left);
+    /**
+     * Definition for a binary tree node.
+     * class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode(int x) { val = x; }
+     * }
+     */
+    class Solution {
+        public int maxDepth(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+            int rightHeight = maxDepth(root.right);
+            int leftHeight = maxDepth(root.left);
 
-        return Math.max(rightHeight, leftHeight) + 1;
+            return Math.max(rightHeight, leftHeight) + 1;
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+
+}

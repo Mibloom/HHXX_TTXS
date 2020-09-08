@@ -28,43 +28,47 @@ package leetcode.editor.cn;
 // Related Topics 数组
 
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution189 {
-    public void rotate(int[] nums, int k) {
-        //for (int i = 0; i < k; i++) {
-        //    int prev = nums[nums.length - 1];
-        //    for (int j = 0; j < nums.length; j++) {
-        //        int temp = nums[j];
-        //        nums[j] = prev;
-        //        prev = temp;
-        //    }
-        //}
-        // 借助其他空间
-        //int temp[] = new int[nums.length];
-        //for (int i = 0; i < nums.length; i++) {
-        //    temp[(i + k) % nums.length] = nums[i];
-        //}
-        //for (int i = 0; i < nums.length; i++) {
-        //    nums[i] = temp[i];
-        //}
-        // 使用反转
-        k = k % nums.length;
-        reverse(nums, 0, nums.length - 1);
-        reverse(nums, 0, k - 1);
-        reverse(nums, k, nums.length - 1);
+class 旋转数组{
 
-    }
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public void rotate(int[] nums, int k) {
+            //for (int i = 0; i < k; i++) {
+            //    int prev = nums[nums.length - 1];
+            //    for (int j = 0; j < nums.length; j++) {
+            //        int temp = nums[j];
+            //        nums[j] = prev;
+            //        prev = temp;
+            //    }
+            //}
+            // 借助其他空间
+            //int temp[] = new int[nums.length];
+            //for (int i = 0; i < nums.length; i++) {
+            //    temp[(i + k) % nums.length] = nums[i];
+            //}
+            //for (int i = 0; i < nums.length; i++) {
+            //    nums[i] = temp[i];
+            //}
+            // 使用反转
+            k = k % nums.length;
+            reverse(nums, 0, nums.length - 1);
+            reverse(nums, 0, k - 1);
+            reverse(nums, k, nums.length - 1);
 
-    public void reverse(int[] nums, int start, int end) {
-        while (start < end) {
-
-            int temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
-            start++;
-            end--;
         }
+
+        public void reverse(int[] nums, int start, int end) {
+            while (start < end) {
+
+                int temp = nums[start];
+                nums[start] = nums[end];
+                nums[end] = temp;
+                start++;
+                end--;
+            }
+        }
+
     }
+//leetcode submit region end(Prohibit modification and deletion)
 
 }
-//leetcode submit region end(Prohibit modification and deletion)

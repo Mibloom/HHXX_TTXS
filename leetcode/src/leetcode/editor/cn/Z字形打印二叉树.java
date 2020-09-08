@@ -7,7 +7,7 @@ import java.util.Stack;
  * @description:
  * @date 2020/5/6 20:59
  */
-public class Z字形打印二叉树 {
+class Z字形打印二叉树 {
 
     // https://blog.csdn.net/p812438109/article/details/101225262
 

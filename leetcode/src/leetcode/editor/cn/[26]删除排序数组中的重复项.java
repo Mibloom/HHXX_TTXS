@@ -44,21 +44,26 @@ package leetcode.editor.cn;
 // Related Topics 数组 双指针
 
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution26 {
-    public int removeDuplicates(int[] nums) {
-        if (nums == null || nums.length <= 1) {
-            return nums.length;
-        }
-        int slow = 0;
-        int fast = 1;
-        while (fast < nums.length) {
-            if (nums[slow] != nums[fast]){
-                nums[++slow] = nums[fast];
+class 删除排序数组中的重复项{
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int removeDuplicates(int[] nums) {
+            if (nums == null || nums.length <= 1) {
+                return nums.length;
             }
-            fast++;
+            int slow = 0;
+            int fast = 1;
+            while (fast < nums.length) {
+                if (nums[slow] != nums[fast]){
+                    nums[++slow] = nums[fast];
+                }
+                fast++;
+            }
+            return slow + 1;
         }
-        return slow + 1;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+
+}
+

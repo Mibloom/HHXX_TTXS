@@ -39,39 +39,44 @@ import java.util.List;
 // Related Topics 树 深度优先搜索
 
 
+class 平衡二叉树{
+
 //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution110 {
-    public boolean isBalanced(TreeNode root) {
-        if (root == null){
-            return true;
+    /**
+     * Definition for a binary tree node.
+     * class TreeNode {
+     *     int val;
+     *     TreeNode left;
+     *     TreeNode right;
+     *     TreeNode(int x) { val = x; }
+     * }
+     */
+    class Solution {
+        public boolean isBalanced(TreeNode root) {
+            if (root == null){
+                return true;
+            }
+            return deep(root) != -1;
         }
-        return deep(root) != -1;
-    }
 
-    private int deep(TreeNode root){
-        if (root == null){
-            return 0;
+        private int deep(TreeNode root){
+            if (root == null){
+                return 0;
+            }
+            int leftDeep = deep(root.left);
+            if (leftDeep == -1){
+                return -1;
+            }
+            int rightDeep = deep(root.right);
+            if (rightDeep == -1){
+                return -1;
+            }
+            return Math.abs(rightDeep-leftDeep) <= 1 ? Math.max(rightDeep,leftDeep) + 1 : -1;
         }
-        int leftDeep = deep(root.left);
-        if (leftDeep == -1){
-            return -1;
-        }
-        int rightDeep = deep(root.right);
-        if (rightDeep == -1){
-            return -1;
-        }
-        return Math.abs(rightDeep-leftDeep) <= 1 ? Math.max(rightDeep,leftDeep) + 1 : -1;
-    }
 
+
+    }
+//leetcode submit region end(Prohibit modification and deletion)
 
 }
-//leetcode submit region end(Prohibit modification and deletion)
+

@@ -25,50 +25,49 @@ import java.util.List;
 // 
 // Related Topics 树 广度优先搜索
 
+class 二叉树的层次遍历{
 
 //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public static List<List<Integer>> levelOrderBottom(TreeNode root) {
-        List<List<Integer>> lists = new ArrayList<>();
-        LinkedList<TreeNode> queue = new LinkedList<>();
-        if (root == null){
-            return lists;
-        }
-        queue.add(root);
-        int level = 0;
-        while (!queue.isEmpty()){
-            lists.add(new ArrayList<>());
-            for (int i = 0; i < queue.size(); i++) {
-                TreeNode node = queue.remove();
-                lists.get(level).add(node.val);
-                if (node.left != null){
-                    queue.add(node.left);
-                }
-                if (node.right != null){
-                    queue.add(node.right);
-                }
+    /**
+     * Definition for a binary tree node.
+     * class TreeNode {
+     *     int val;
+     *     TreeNode left;
+     *     TreeNode right;
+     *     TreeNode(int x) { val = x; }
+     * }
+     */
+    class Solution {
+        public List<List<Integer>> levelOrderBottom(TreeNode root) {
+            List<List<Integer>> lists = new ArrayList<>();
+            LinkedList<TreeNode> queue = new LinkedList<>();
+            if (root == null){
+                return lists;
             }
-            level++;
+            queue.add(root);
+            int level = 0;
+            while (!queue.isEmpty()){
+                lists.add(new ArrayList<>());
+                for (int i = 0; i < queue.size(); i++) {
+                    TreeNode node = queue.remove();
+                    lists.get(level).add(node.val);
+                    if (node.left != null){
+                        queue.add(node.left);
+                    }
+                    if (node.right != null){
+                        queue.add(node.right);
+                    }
+                }
+                level++;
+            }
+            List<List<Integer>> list = new ArrayList<>();
+            for (int i = lists.size() - 1; i >= 0; i--) {
+                System.out.println(Arrays.toString(lists.get(i).toArray()));
+                list.add(lists.get(i));
+            }
+            return list;
         }
-        List<List<Integer>> list = new ArrayList<>();
-        for (int i = lists.size() - 1; i >= 0; i--) {
-            System.out.println(Arrays.toString(lists.get(i).toArray()));
-            list.add(lists.get(i));
-        }
-        return list;
     }
-
-    public static void main(String[] args) {
-
-    }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+
+}

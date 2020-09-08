@@ -43,45 +43,49 @@ package leetcode.editor.cn;
 
 import java.util.Stack;
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution20 {
-    public  boolean isValid(String s) {
-        //HashMap<Character, Character> map = new HashMap<Character, Character>() {{
-        //        //    put(')', '(');
-        //        //    put('}', '{');
-        //        //    put(']', '[');
-        //        //}};
-        //        //char[] chars = s.toCharArray();
-        //        //Stack<Character> stack = new Stack<>();
-        //        //stack.push('?');
-        //        //for (char aChar : chars) {
-        //        //    if (map.containsKey(aChar)){
-        //        //        if (!stack.pop().equals(map.get(aChar))){
-        //        //            return false;
-        //        //        }
-        //        //    }else {
-        //        //        stack.push(aChar);
-        //        //    }
-        //        //}
-        //        //return stack.size() == 1;
+class 有效的括号{
 
-        if (s.isEmpty()) {
-            return true;
-        }
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public  boolean isValid(String s) {
+            //HashMap<Character, Character> map = new HashMap<Character, Character>() {{
+            //        //    put(')', '(');
+            //        //    put('}', '{');
+            //        //    put(']', '[');
+            //        //}};
+            //        //char[] chars = s.toCharArray();
+            //        //Stack<Character> stack = new Stack<>();
+            //        //stack.push('?');
+            //        //for (char aChar : chars) {
+            //        //    if (map.containsKey(aChar)){
+            //        //        if (!stack.pop().equals(map.get(aChar))){
+            //        //            return false;
+            //        //        }
+            //        //    }else {
+            //        //        stack.push(aChar);
+            //        //    }
+            //        //}
+            //        //return stack.size() == 1;
 
-        Stack<Character> stack = new Stack<>();
-        for (Character a : s.toCharArray()){
-            if (a.equals('(')){
-                stack.push(')');
-            }else if (a.equals('[')){
-                stack.push(']');
-            }else if (a.equals('{')){
-                stack.push('}');
-            }else if (stack.empty() || !a.equals(stack.pop())){
-                return false;
+            if (s.isEmpty()) {
+                return true;
             }
+
+            Stack<Character> stack = new Stack<>();
+            for (Character a : s.toCharArray()){
+                if (a.equals('(')){
+                    stack.push(')');
+                }else if (a.equals('[')){
+                    stack.push(']');
+                }else if (a.equals('{')){
+                    stack.push('}');
+                }else if (stack.empty() || !a.equals(stack.pop())){
+                    return false;
+                }
+            }
+            return stack.empty();
         }
-        return stack.empty();
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+}
+

@@ -14,19 +14,22 @@ package leetcode.editor.cn;//给定一个数组 nums，编写一个函数将所�
 // Related Topics 数组 双指针
 
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution283 {
-    public void moveZeroes(int[] nums) {
-        int i = 0;
-        for (int j = 0; j < nums.length; j++) {
-            if (nums[j] != 0){
-                nums[i] = nums[j];
-                if (i != j){
-                    nums[j] = 0;
+class 移动零{
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public void moveZeroes(int[] nums) {
+            int i = 0;
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j] != 0){
+                    nums[i] = nums[j];
+                    if (i != j){
+                        nums[j] = 0;
+                    }
+                    i++;
                 }
-                i++;
             }
         }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+}

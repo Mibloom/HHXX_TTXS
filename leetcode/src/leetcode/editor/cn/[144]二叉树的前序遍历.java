@@ -17,45 +17,50 @@ package leetcode.editor.cn;
 // Related Topics 栈 树
 
 
-//leetcode submit region begin(Prohibit modification and deletion)
-
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution114 {
+class 二叉树的前序遍历{
 
-    private List<Integer> list = new ArrayList<>();
+//leetcode submit region begin(Prohibit modification and deletion)
+    /**
+     * Definition for a binary tree node.
+     * class TreeNode {
+     *     int val;
+     *     TreeNode left;
+     *     TreeNode right;
+     *     TreeNode(int x) { val = x; }
+     * }
+     */
+    class Solution {
 
-    public List<Integer> preorderTraversal(TreeNode root) {
-        //if (root != null){
-        //    list.add(root.val);
-        //    preorderTraversal(root.left);
-        //    preorderTraversal(root.right);
-        //}
+        private List<Integer> list = new ArrayList<>();
 
-        // 非递归方法做，使用栈
-        ArrayDeque<TreeNode> deque = new ArrayDeque<>();
-        while (root != null || !deque.isEmpty()){
-            if (root != null){
-                list.add(root.val);
-                deque.push(root);
-                root = root.left;
-            }else {
-                root = deque.pop().right;
+
+        public List<Integer> preorderTraversal(TreeNode root) {
+            //if (root != null){
+            //    list.add(root.val);
+            //    preorderTraversal(root.left);
+            //    preorderTraversal(root.right);
+            //}
+
+            // 非递归方法做，使用栈
+            ArrayDeque<TreeNode> deque = new ArrayDeque<>();
+            while (root != null || !deque.isEmpty()){
+                if (root != null){
+                    list.add(root.val);
+                    deque.push(root);
+                    root = root.left;
+                }else {
+                    root = deque.pop().right;
+                }
             }
-        }
 
-        return list;
+            return list;
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+
+}
+

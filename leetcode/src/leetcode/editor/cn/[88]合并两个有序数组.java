@@ -22,51 +22,56 @@ package leetcode.editor.cn;
 // Related Topics 数组 双指针
 
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution88 {
-    public void merge(int[] nums1, int m, int[] nums2, int n) {
-        //System.arraycopy(nums2,0,nums1,m,n);
-        //        //Arrays.sort(nums1);
+class 合并两个有序数组{
 
-        // 指针从前往后遍历，需要额外的空间保存要被改变的num1
-        //int[] copy = new int[m];
-        //System.arraycopy(nums1,0,copy,0,m);
-        //
-        //int p1 = 0;
-        //int p2 = 0;
-        //int p = 0;
-        //
-        //while (p1 < m && p2 < n){
-        //    if (copy[p1] <= nums2[p2]){
-        //        nums1[p] = copy[p1];
-        //        p++;
-        //        p1++;
-        //    }else {
-        //        nums1[p] = nums2[p2];
-        //        p++;
-        //        p2++;
-        //    }
-        //}
-        //if (p1 < m){
-        //    System.arraycopy(copy,p1,nums1,p1+p2,m-p1+n-p2);
-        //}
-        //if (p2 < n){
-        //    System.arraycopy(nums2,p2,nums1,p1+p2,m-p1+n-p2);
-        //}
 
-        // 从后往前遍历，则不要额外的空间
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public void merge(int[] nums1, int m, int[] nums2, int n) {
+            //System.arraycopy(nums2,0,nums1,m,n);
+            //        //Arrays.sort(nums1);
 
-        int p1 = m - 1;
-        int p2 = n - 1;
-        int p = m + n - 1;
+            // 指针从前往后遍历，需要额外的空间保存要被改变的num1
+            //int[] copy = new int[m];
+            //System.arraycopy(nums1,0,copy,0,m);
+            //
+            //int p1 = 0;
+            //int p2 = 0;
+            //int p = 0;
+            //
+            //while (p1 < m && p2 < n){
+            //    if (copy[p1] <= nums2[p2]){
+            //        nums1[p] = copy[p1];
+            //        p++;
+            //        p1++;
+            //    }else {
+            //        nums1[p] = nums2[p2];
+            //        p++;
+            //        p2++;
+            //    }
+            //}
+            //if (p1 < m){
+            //    System.arraycopy(copy,p1,nums1,p1+p2,m-p1+n-p2);
+            //}
+            //if (p2 < n){
+            //    System.arraycopy(nums2,p2,nums1,p1+p2,m-p1+n-p2);
+            //}
 
-        while (p1 >= 0 && p2 >= 0) {
-          nums1[p--] = nums1[p1] > nums2[p2] ? nums1[p1--] : nums2[p2--];
+            // 从后往前遍历，则不要额外的空间
+
+            int p1 = m - 1;
+            int p2 = n - 1;
+            int p = m + n - 1;
+
+            while (p1 >= 0 && p2 >= 0) {
+                nums1[p--] = nums1[p1] > nums2[p2] ? nums1[p1--] : nums2[p2--];
+            }
+            if (p1 < 0){
+                System.arraycopy(nums2, 0, nums1, 0, p2 + 1);
+            }
+
         }
-        if (p1 < 0){
-            System.arraycopy(nums2, 0, nums1, 0, p2 + 1);
-        }
-
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+
+}

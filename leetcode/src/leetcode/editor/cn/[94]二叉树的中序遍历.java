@@ -20,41 +20,46 @@ import java.util.List;
 // Related Topics 栈 树 哈希表
 
 
+class 二叉树的中序遍历{
+
+
 //leetcode submit region begin(Prohibit modification and deletion)
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- * int val;
- * TreeNode left;
- * TreeNode right;
- * TreeNode(int x) { val = x; }
- * }
- */
-class Solution94 {
-    private List<Integer> list = new ArrayList<>();
+    /**
+     * Definition for a binary tree node.
+     * class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode(int x) { val = x; }
+     * }
+     */
+    class Solution {
+        private List<Integer> list = new ArrayList<>();
 
-    public List<Integer> inorderTraversal(TreeNode root) {
-        //if (root != null) {
-        //    inorderTraversal(root.left);
-        //    list.add(root.val);
-        //    inorderTraversal(root.right);
-        //}
+        public List<Integer> inorderTraversal(TreeNode root) {
+            //if (root != null) {
+            //    inorderTraversal(root.left);
+            //    list.add(root.val);
+            //    inorderTraversal(root.right);
+            //}
 
-        //非递归
-        ArrayDeque<TreeNode> deque = new ArrayDeque();
-        while (root != null || !deque.isEmpty()) {
-            if (root != null) {
-                deque.push(root);
-                root = root.left;
-            } else {
-                root = deque.pop();
-                list.add(root.val);
-                root = root.right;
+            //非递归
+            ArrayDeque<TreeNode> deque = new ArrayDeque();
+            while (root != null || !deque.isEmpty()) {
+                if (root != null) {
+                    deque.push(root);
+                    root = root.left;
+                } else {
+                    root = deque.pop();
+                    list.add(root.val);
+                    root = root.right;
+                }
             }
+            return list;
         }
-        return list;
+
     }
+//leetcode submit region end(Prohibit modification and deletion)
 
 }
-//leetcode submit region end(Prohibit modification and deletion)

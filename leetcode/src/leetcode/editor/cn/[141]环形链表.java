@@ -40,35 +40,39 @@ package leetcode.editor.cn;
 // Related Topics 链表 双指针
 
 
+class 环形链表{
+
 //leetcode submit region begin(Prohibit modification and deletion)
 
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-class Solution141 {
-    public boolean hasCycle(ListNode head) {
-        if (head == null ){
+    /**
+     * Definition for singly-linked list.
+     * class ListNode {
+     *     int val;
+     *     ListNode next;
+     *     ListNode(int x) {
+     *         val = x;
+     *         next = null;
+     *     }
+     * }
+     */
+    class Solution {
+        public boolean hasCycle(ListNode head) {
+            if (head == null ){
+                return false;
+            }
+
+            ListNode slow = head;
+            ListNode fast = head;
+            while (fast != null && fast.next != null){
+                slow = slow.next;
+                fast = fast.next.next;
+                if (fast == slow){
+                    return true;
+                }
+            }
             return false;
         }
-
-        ListNode slow = head;
-        ListNode fast = head;
-        while (fast != null && fast.next != null){
-            slow = slow.next;
-            fast = fast.next.next;
-            if (fast == slow){
-                return true;
-            }
-        }
-        return false;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+
+}

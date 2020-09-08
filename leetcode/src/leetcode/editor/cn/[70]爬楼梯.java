@@ -25,33 +25,34 @@ package leetcode.editor.cn;
 // Related Topics 动态规划
 
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution70 {
-    public int climbStairs(int n) {
-        //    if (n <= 2){
-        //        return n;
-        //    }
-        //    int num = 0;
-        //    int n1 = 1;
-        //    int n2 = 2;
-        //    for (int i = 3; i < n+1; i++) {
-        //        num = n1 + n2;
-        //        n1 = n2;
-        //        n2 = num;
-        //    }
-        //    return num;
-        //}
-        if (n == 1) {
-            return 1;
-        }
-        if (n == 2){
-            return 2;
-        }
-        return   climbStairs(n-1) + climbStairs(n-1);
+class 爬楼梯{
 
-
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int climbStairs(int n) {
+            //    if (n <= 2){
+            //        return n;
+            //    }
+            //    int num = 0;
+            //    int n1 = 1;
+            //    int n2 = 2;
+            //    for (int i = 3; i < n+1; i++) {
+            //        num = n1 + n2;
+            //        n1 = n2;
+            //        n2 = num;
+            //    }
+            //    return num;
+            //}
+            if (n == 1) {
+                return 1;
+            }
+            if (n == 2){
+                return 2;
+            }
+            return   climbStairs(n-1) + climbStairs(n-1);
+        }
 
     }
+//leetcode submit region end(Prohibit modification and deletion)
 
 }
-//leetcode submit region end(Prohibit modification and deletion)

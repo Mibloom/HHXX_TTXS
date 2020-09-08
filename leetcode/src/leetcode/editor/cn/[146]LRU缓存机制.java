@@ -33,101 +33,89 @@ import java.util.List;
 // Related Topics 设计
 
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class LRUCache {
-    private class LinkNode {
-        private int key;
-        private int value;
-        private LinkNode prev;
-        private LinkNode next;
+class LRU缓存机制{
 
-        LinkNode(int key, int value) {
-            this.key = key;
-            this.value = value;
-        }
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class LRUCache {
+        private class LinkNode {
+            private int key;
+            private int value;
+            private LinkNode prev;
+            private LinkNode next;
 
-        LinkNode() {
-
-        }
-
-    }
-
-    private HashMap<Integer, LinkNode> hashMap;
-    private int size;
-    private int capacity;
-    private LinkNode head;
-    private LinkNode tail;
-
-    public LRUCache(int capacity) {
-        this.size = 0;
-        this.capacity = capacity;
-    }
-
-    public int get(int key) {
-        if (hashMap == null || hashMap.get(key) == null){
-            return -1;
-        }
-        LinkNode linkNode = hashMap.get(key);
-        moveNode(linkNode);
-        addNode(linkNode);
-        return linkNode.value;
-    }
-
-    public void put(int key, int value) {
-        if (hashMap == null) {
-            hashMap = new HashMap<>();
-            head = new LinkNode();
-            tail = new LinkNode();
-            head.next = tail;
-            tail.prev = head;
-        }
-        LinkNode linkNode = hashMap.get(key);
-        if (linkNode == null) {
-            LinkNode newNode = new LinkNode(key, value);
-            if (size >= capacity){
-                LinkNode deleteNode = head.next;
-                head.next = deleteNode.next;
-                deleteNode.next.prev = head;
-                hashMap.remove(deleteNode.key);
-                deleteNode = null;
-                --size;
+            LinkNode(int key, int value) {
+                this.key = key;
+                this.value = value;
             }
-            addNode(newNode);
-            hashMap.put(key,newNode);
-            ++size;
-        }else {
-            linkNode.value = value;
+
+            LinkNode() {
+
+            }
+
+        }
+
+        private HashMap<Integer, LinkNode> hashMap;
+        private int size;
+        private int capacity;
+        private LinkNode head;
+        private LinkNode tail;
+
+        public LRUCache(int capacity) {
+            this.size = 0;
+            this.capacity = capacity;
+        }
+
+        public int get(int key) {
+            if (hashMap == null || hashMap.get(key) == null){
+                return -1;
+            }
+            LinkNode linkNode = hashMap.get(key);
             moveNode(linkNode);
             addNode(linkNode);
+            return linkNode.value;
+        }
+
+        public void put(int key, int value) {
+            if (hashMap == null) {
+                hashMap = new HashMap<>();
+                head = new LinkNode();
+                tail = new LinkNode();
+                head.next = tail;
+                tail.prev = head;
+            }
+            LinkNode linkNode = hashMap.get(key);
+            if (linkNode == null) {
+                LinkNode newNode = new LinkNode(key, value);
+                if (size >= capacity){
+                    LinkNode deleteNode = head.next;
+                    head.next = deleteNode.next;
+                    deleteNode.next.prev = head;
+                    hashMap.remove(deleteNode.key);
+                    deleteNode = null;
+                    --size;
+                }
+                addNode(newNode);
+                hashMap.put(key,newNode);
+                ++size;
+            }else {
+                linkNode.value = value;
+                moveNode(linkNode);
+                addNode(linkNode);
+            }
+
+        }
+        private void moveNode(LinkNode node){
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+        }
+        private void addNode(LinkNode node){
+            node.prev = tail.prev;
+            tail.prev = node;
+            node.prev.next = node;
+            node.next = tail;
         }
 
     }
-    private void moveNode(LinkNode node){
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
-    }
-   private void addNode(LinkNode node){
-       node.prev = tail.prev;
-       tail.prev = node;
-       node.prev.next = node;
-       node.next = tail;
-   }
-
-
-    public static void main(String[] args) {
-        LRUCache lruCache = new LRUCache(1);
-        //lruCache.put(1,1);
-        //lruCache.put(2,2);
-        //lruCache.get(1);
-        //lruCache.put(3,3);
-        //lruCache.get(2);
-        //lruCache.put(4,4);
-        //lruCache.get(1);
-        //lruCache.get(3);
-        lruCache.get(0);
-    }
-
-}
 
 /**
  * Your LRUCache object will be instantiated and called as such:
@@ -136,3 +124,6 @@ class LRUCache {
  * obj.put(key,value);
  */
 //leetcode submit region end(Prohibit modification and deletion)
+
+}
+

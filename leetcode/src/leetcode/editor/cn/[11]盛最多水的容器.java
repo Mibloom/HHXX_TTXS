@@ -17,28 +17,37 @@ package leetcode.editor.cn;
 // 输入：[1,8,6,2,5,4,8,3,7]
 //输出：49 
 // Related Topics 数组 双指针
+class 盛最多水的容器{
+    
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int maxArea(int[] height) {
+            //    int max = 0;
+            //    for (int i = 0; i < height.length; i++) {
+            //        for (int j = i + 1; j < height.length; j++) {
+            //            int area = (j - i) * Math.min(height[i], height[j]);
+            //            max = Math.max(max,area);
+            //        }
+            //    }
+            //    return max;
+            //}
 
-
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution11 {
-    public int maxArea(int[] height) {
-        //    int max = 0;
-        //    for (int i = 0; i < height.length; i++) {
-        //        for (int j = i + 1; j < height.length; j++) {
-        //            int area = (j - i) * Math.min(height[i], height[j]);
-        //            max = Math.max(max,area);
-        //        }
-        //    }
-        //    return max;
-        //}
-
-        int max = 0;
-        for (int i = 0, j = height.length - 1; i < j;) {
-            int minHeight = height[i] > height[j] ? height[j--] : height[i++];
-            int area = (j - i + 1) * minHeight;
-            max = Math.max(max,area);
+            int max = 0;
+            for (int i = 0, j = height.length - 1; i < j;) {
+                int minHeight = height[i] > height[j] ? height[j--] : height[i++];
+                int area = (j - i + 1) * minHeight;
+                max = Math.max(max,area);
+            }
+            return max;
         }
-        return max;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+
+    public static void main(String[] args) {
+
+    }
+
+}
+
+
+

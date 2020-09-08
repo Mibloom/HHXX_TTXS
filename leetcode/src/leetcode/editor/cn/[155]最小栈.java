@@ -22,63 +22,65 @@ package leetcode.editor.cn;
 // Related Topics 栈 设计
 
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class MinStack {
-    private class Node {
-        Node(int value, int min) {
-            this.value = value;
-            this.min = min;
-            this.next = null;
+class 最小栈{
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class MinStack {
+        private class Node {
+            Node(int value, int min) {
+                this.value = value;
+                this.min = min;
+                this.next = null;
+            }
+
+            int value;
+            int min;
+            Node next;
         }
 
-        int value;
-        int min;
-        Node next;
-    }
+        private Node head;
 
-    private Node head;
+        /**
+         * initialize your data structure here.
+         */
+        public MinStack() {
 
-    /**
-     * initialize your data structure here.
-     */
-    public MinStack() {
+        }
 
-    }
+        public void push(int x) {
+            if (head == null) {
+                head = new Node(x, x);
+            } else if (head.min <= x) {
+                Node node = new Node(x, head.min);
+                node.next = head;
+                head = node;
+            }else {
+                Node node = new Node(x, x);
+                node.next = head;
+                head = node;
+            }
+        }
 
-    public void push(int x) {
-        if (head == null) {
-            head = new Node(x, x);
-        } else if (head.min <= x) {
-            Node node = new Node(x, head.min);
-            node.next = head;
-            head = node;
-        }else {
-            Node node = new Node(x, x);
-            node.next = head;
-            head = node;
+        public void pop() {
+            if (head != null){
+                head = head.next;
+            }
+        }
+
+        public int top() {
+            if (head != null){
+                return head.value;
+            }
+            return -1;
+        }
+
+        public int getMin() {
+            if (head != null){
+                return head.min;
+            }
+            return -1;
         }
     }
-
-    public void pop() {
-        if (head != null){
-            head = head.next;
-        }
-    }
-
-    public int top() {
-        if (head != null){
-            return head.value;
-        }
-        return -1;
-    }
-
-    public int getMin() {
-        if (head != null){
-            return head.min;
-        }
-        return -1;
-    }
-}
 
 /**
  * Your MinStack object will be instantiated and called as such:
@@ -89,3 +91,5 @@ class MinStack {
  * int param_4 = obj.getMin();
  */
 //leetcode submit region end(Prohibit modification and deletion)
+
+}

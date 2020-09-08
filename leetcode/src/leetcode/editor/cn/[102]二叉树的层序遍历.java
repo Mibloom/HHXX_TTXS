@@ -28,41 +28,45 @@ import java.util.List;
 // Related Topics 树 广度优先搜索
 
 
+class 二叉树的层序遍历{
+
 //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution102 {
-    public List<List<Integer>> levelOrder(TreeNode root) {
-        ArrayList<List<Integer>> lists = new ArrayList<>();
-        LinkedList<TreeNode> queue = new LinkedList<>();
-        if (root == null){
+    /**
+     * Definition for a binary tree node.
+     * class TreeNode {
+     *     int val;
+     *     TreeNode left;
+     *     TreeNode right;
+     *     TreeNode(int x) { val = x; }
+     * }
+     */
+    class Solution {
+        public List<List<Integer>> levelOrder(TreeNode root) {
+            ArrayList<List<Integer>> lists = new ArrayList<>();
+            LinkedList<TreeNode> queue = new LinkedList<>();
+            if (root == null){
+                return lists;
+            }
+            queue.add(root);
+            int level = 0;
+            while (!queue.isEmpty()){
+                lists.add(new ArrayList<>());
+                int size = queue.size();
+                for (int i = 0; i < size; i++) {
+                    TreeNode node = queue.remove();
+                    lists.get(level).add(node.val);
+                    if (node.left != null){
+                        queue.add(node.left);
+                    }
+                    if (node.right != null){
+                        queue.add(node.right);
+                    }
+                }
+                level++;
+            }
             return lists;
         }
-        queue.add(root);
-        int level = 0;
-        while (!queue.isEmpty()){
-            lists.add(new ArrayList<>());
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = queue.remove();
-                lists.get(level).add(node.val);
-                if (node.left != null){
-                    queue.add(node.left);
-                }
-                if (node.right != null){
-                    queue.add(node.right);
-                }
-            }
-            level++;
-        }
-        return lists;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+
+}
