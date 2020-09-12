@@ -26,74 +26,51 @@ package leetcode.editor.cn;
 // Related Topics 链表
 
 
-class K个一组翻转链表{
+
+class K个一组翻转链表 {
 
 //leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for singly-linked list.
-     * class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode(int x) { val = x; }
-     * }
-     */
     class Solution {
+
         public ListNode reverseKGroup(ListNode head, int k) {
-            if (head == null || k == 1) {
+            if (head == null || k == 1){
                 return head;
             }
-            //ListNode dummy = new ListNode(0);
-            //dummy.next = head;
-            //ListNode prev = dummy;
-            //ListNode end = dummy;
-            //while (end.next != null) {
-            //    for (int i = 0; i < k  && end != null; i++) {
-            //        end = end.next;
-            //    }
-            //    if (end == null) {
-            //        break;
-            //    }
-            //    ListNode start = prev.next;
-            //    ListNode next_head = end.next;
-            //    ListNode reverse = reverse(start, next_head);
-            //    // 0-3-2-1-4-5-6
-            //    prev.next = reverse;
-            //    start.next = next_head;
-            //    prev = start;
-            //    end = prev;
-            //}
-            //return dummy.next;
-
-            // 递归 每次返回调转之后的头节点
+            ListNode dummy = new ListNode(-1);
+            dummy.next = head;
+            ListNode prev = dummy; // prev 两个子链之间的纽带，把2个子链关联起来
             ListNode end = head;
-            for (int i = 0; i < k; i++) {
-                // [1,2] k = 2
-                if (end == null){
-                    return head;
+            ListNode start = head;
+            while (end != null){
+                for (int i = 0; i < k - 1; i++) {
+                    end = end.next;
+                    if (end == null){
+                      return dummy.next;
+                    }
                 }
-                end = end.next;
+                ListNode temp = end.next;
+                ListNode reverse = reverse(start,end);
+                prev.next = reverse;
+                prev = start;
+                start.next = temp;
+                start = temp;
+                end = temp;
             }
-            ListNode reverse = reverse(head, end);
-            ListNode listNode = reverseKGroup(end, k);
-            head.next = listNode;
-            return reverse;
+            return dummy.next;
 
         }
-
-        private ListNode reverse(ListNode head, ListNode next_head) {
-            ListNode curr = head;
-            ListNode prev = null;
-            while (curr != next_head) {
-                ListNode temp = curr.next;
-                curr.next = prev;
-                prev = curr;
-                curr = temp;
+        private ListNode reverse(ListNode start, ListNode end){
+            if (start == null || start == end){
+                return start;
             }
-            return prev;
+            ListNode reverse = reverse(start.next, end);
+            // 1-2-3   3-2 1
+            ListNode temp = start.next;
+            temp.next = start;
+            start.next = null;
+            return reverse;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
-
 }
 

@@ -12,7 +12,7 @@ package leetcode.editor.cn;
 // Related Topics 链表
 
 
-class 两两交换链表中的节点{
+class 两两交换链表中的节点 {
 
 //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -29,38 +29,30 @@ class 两两交换链表中的节点{
             if (head == null || head.next == null) {
                 return head;
             }
+            ListNode dummy = new ListNode(-1);
+            ListNode prev = dummy;
+            prev.next = head;
+            ListNode l1 = head;
+            while (l1 != null && l1.next != null) {
+                ListNode l2 = l1.next;
+                ListNode temp = l2.next;
+                l1.next = temp;
+                l2.next = l1;
+                prev.next = l2;
+                prev = l1;
+                l1 = l1.next;
+            }
+            return dummy.next;
 
-            // 1--> 2--> 3--> 4--> 5--> 6
-            // 2--> 1--> 3--> 4--> 5--> 6
-            // 1--> 3--> 4--> 5--> 6
-            // 1-->4-->3-->5
-
-            //ListNode temp = new ListNode(0);
-            //temp.next = head;
-            //ListNode prev = temp;
-            //while (head != null && head.next != null) {
-            //    ListNode first = head;
-            //    ListNode sec = head.next;
-            //
-            //    prev.next = sec;
-            //    first.next = sec.next;
-            //    sec.next = first;
-            //
-            //    prev = first;
-            //    head = first.next;
-            //}
-            //return temp.next;
-
-            // 递归
-
-            ListNode first = head;
-            ListNode sec = head.next;
-
-            first.next  = swapPairs(sec.next);
-            sec.next = first;
-            return sec;
+// Your IntelliJ IDEA subscription expired on 2020/9/10. If you don't renew it before 2020/9/17, you will no longer be able to use the product
+//            // 递归
+//            ListNode l1 = head;
+//            ListNode l2 = l1.next;
+//            ListNode node = swapPairs(l2.next);
+//            l2.next = l1;
+//            l1.next = node;
+//            return l2;
         }
-
     }
 //leetcode submit region end(Prohibit modification and deletion)
 

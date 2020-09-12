@@ -28,34 +28,70 @@ class 三数之和{
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<List<Integer>> threeSum(int[] nums) {
+            // 暴力法，超时未AC
+//            Arrays.sort(nums);
+//            ArrayList<List<Integer>> result = new ArrayList<>();
+//            for(int i = 0; i < nums.length; i++){
+//                for (int j = i + 1; j < nums.length; j++){
+//                    for (int k = j + 1; k < nums.length; k++){
+//                        if (nums[i] + nums[j] + nums[k] == 0){
+//                            ArrayList<Integer> list = new ArrayList<>();
+//                            list.add(nums[i]);
+//                            list.add(nums[j]);
+//                            list.add(nums[k]);
+//                            if (!result.contains(list)){
+//                                result.add(list);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            return result;
+
+            // 固定一个数，再使用双指针法
             Arrays.sort(nums);
             List<List<Integer>> list = new ArrayList<>();
-            for (int k = 0; k < nums.length; k++) {
-                if (nums[k] > 0) {
-                    break;
+            for(int i = 0; i < nums.length; i++){
+                if (nums[i] > 0){
+                    return list;
                 }
-                if (k > 0 && nums[k] == nums[k - 1]) {
+                if (i > 0 && nums[i] == nums[i - 1]){
                     continue;
                 }
-                int i = k + 1;
-                int j = nums.length - 1;
-                while (i < j) {
-                    int sum = nums[k] + nums[i] + nums[j];
-                    if (sum < 0) {
-                        while (i < j && nums[i] == nums[++i]){}
-                    } else if (sum > 0) {
-                        while (i < j && nums[j] == nums[--j]){};
-                    } else {
-                        list.add(Arrays.asList(nums[k], nums[i], nums[j]));
-                        while (i < j && nums[i] == nums[++i]){};
-                        while (i < j && nums[j] == nums[--j]){};
+                int l = i + 1;
+                int r = nums.length - 1;
+                while(l < r){
+                    int sum = nums[i] + nums[l] + nums[r];
+                    if (sum == 0){
+                        list.add(Arrays.asList(nums[i],nums[l],nums[r]));
+                        while ((l < r) && nums[l] == nums[++l]){}
+                        while ((l < r) && nums[r] == nums[--r]){}
+                    }else if (sum < 0){
+                        while ((l < r) && nums[l] == nums[++l]){}
+                    }else {
+                        while ((l < r) && nums[r] == nums[--r]){}
                     }
                 }
             }
             return list;
         }
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
+
+
+    public static void main(String[] args) {
+        int[] nums = new int[]{-1,-1,3,4,5};
+        for (int i = 0; i < nums.length; i++) {
+            System.out.println(i);
+            if (i > 0 && nums[i] == nums[i - 1]){
+                continue;
+            }
+            System.out.println("end:"+i);
+
+        }
+
+    }
 
 }
 

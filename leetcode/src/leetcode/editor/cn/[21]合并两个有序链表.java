@@ -9,7 +9,9 @@ package leetcode.editor.cn;
 // Related Topics 链表
 
 
-class 合并两个有序链表{
+import org.w3c.dom.NodeList;
+
+class 合并两个有序链表 {
     /**
      * Definition for singly-linked list.
      * class ListNode {
@@ -21,34 +23,20 @@ class 合并两个有序链表{
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-            //if (l1 == null) {
-            //    return l2;
-            //} else if (l2 == null) {
-            //    return l1;
-            //} else if (l1.val < l2.val) {
-            //    l1.next = mergeTwoLists(l1.next, l2);
-            //    return l1;
-            //} else {
-            //    l2.next = mergeTwoLists(l1, l2.next);
-            //    return l2;
-            //}
-
-            //迭代
-
-            ListNode dummy = new ListNode(0);
-            ListNode prev = dummy;
-            while (l1 != null && l2 != null) {
-                if (l1.val <= l2.val) {
-                    prev.next = l1;
-                    l1 = l1.next;
-                } else {
+            ListNode temp = new ListNode(0);
+            ListNode prev = temp;
+            while (l1 != null && l2 != null){
+                if (l1.val <= l2.val){
+                   prev.next = l1;
+                   l1 = l1.next;
+                }else {
                     prev.next = l2;
                     l2 = l2.next;
                 }
                 prev = prev.next;
             }
             prev.next = l1 == null ? l2 : l1;
-            return dummy.next;
+            return temp.next;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

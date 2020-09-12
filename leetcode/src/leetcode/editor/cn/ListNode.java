@@ -15,6 +15,8 @@ class ListNode {
     ListNode(int x) {
         val = x;
     }
+    ListNode() {
+    }
 
     public static ListNode getInstance() {
         ListNode listNode = new ListNode(1);

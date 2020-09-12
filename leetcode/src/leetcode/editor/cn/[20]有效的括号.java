@@ -41,6 +41,8 @@ package leetcode.editor.cn;
 // Related Topics 栈 字符串
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 class 有效的括号{
@@ -48,39 +50,34 @@ class 有效的括号{
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public  boolean isValid(String s) {
-            //HashMap<Character, Character> map = new HashMap<Character, Character>() {{
-            //        //    put(')', '(');
-            //        //    put('}', '{');
-            //        //    put(']', '[');
-            //        //}};
-            //        //char[] chars = s.toCharArray();
-            //        //Stack<Character> stack = new Stack<>();
-            //        //stack.push('?');
-            //        //for (char aChar : chars) {
-            //        //    if (map.containsKey(aChar)){
-            //        //        if (!stack.pop().equals(map.get(aChar))){
-            //        //            return false;
-            //        //        }
-            //        //    }else {
-            //        //        stack.push(aChar);
-            //        //    }
-            //        //}
-            //        //return stack.size() == 1;
-
-            if (s.isEmpty()) {
-                return true;
-            }
+//            Stack<Character> stack = new Stack<>();
+//            Map<Character,Character> map = new HashMap<>();
+//            map.put('}','{');
+//            map.put(')','(');
+//            map.put(']','[');
+//            for(Character chara : s.toCharArray()){
+//                if (!map.containsKey(chara)){
+//                    stack.push(chara);
+//                }else {
+//                    if (stack.empty() || !stack.pop().equals(map.get(chara))){
+//                        return false;
+//                    }
+//                }
+//            }
+//            return stack.empty();
 
             Stack<Character> stack = new Stack<>();
-            for (Character a : s.toCharArray()){
-                if (a.equals('(')){
-                    stack.push(')');
-                }else if (a.equals('[')){
-                    stack.push(']');
-                }else if (a.equals('{')){
+            for(Character c : s.toCharArray()){
+                if (c.equals('{')){
                     stack.push('}');
-                }else if (stack.empty() || !a.equals(stack.pop())){
-                    return false;
+                }else if (c.equals('(')){
+                    stack.push(')');
+                }else if (c.equals('[')){
+                    stack.push(']');
+                }else {
+                    if (stack.empty() || !stack.pop().equals(c)){
+                        return false;
+                    }
                 }
             }
             return stack.empty();

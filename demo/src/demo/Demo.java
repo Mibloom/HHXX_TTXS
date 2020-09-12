@@ -2,9 +2,12 @@ package demo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -16,15 +19,33 @@ public class Demo {
 
     public Demo() {
     }
-
+    static ReentrantLock reentrantLock = new ReentrantLock();
     public static void main(String[] args) {
-        String s = "sd";
-        ReentrantLock lock = new ReentrantLock();
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(10, 200, 60, TimeUnit.MINUTES, new LinkedBlockingQueue<>());
-        HashMap<String, String> hashMap = new HashMap<>(1000);
-        hashMap.put("lpk","123");
-        System.out.println(hashMap.size());
-        ArrayList<String> strings = new ArrayList<>();
+
+        new Thread(() -> {
+            ParkDemo.test();
+        }).start();
+        new Thread(() -> {
+            ParkDemo.test();
+        }).start();
+
+        reentrantLock.lockInterruptibly();
+
+        CountDownLatch downLatch = new CountDownLatch(12);
+
+
+    }
+
+    static class ParkDemo{
+
+        static void test() {
+            try {
+                reentrantLock.lock();
+                System.out.println("lpklpklpk");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

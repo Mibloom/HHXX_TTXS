@@ -41,7 +41,10 @@ package leetcode.editor.cn;
 // Related Topics 链表 双指针
 
 
-class 环形链表II{
+import java.util.HashMap;
+import java.util.HashSet;
+
+class 环形链表II {
 
 //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -58,25 +61,36 @@ class 环形链表II{
      */
     class Solution {
         public ListNode detectCycle(ListNode head) {
-            ListNode slow = head;
-            // fast 指向头节点
-            ListNode fast = head;
-            while (true) {
-                if (fast == null || fast.next == null) {
-                    return null;
-                }
-                slow = slow.next;
-                fast = fast.next.next;
-                if (slow == fast) {
-                    break;
-                }
+            if (head == null) {
+                return null;
             }
-            fast = head;
-            while (fast != slow) {
-                fast = fast.next;
-                slow = slow.next;
+            HashSet<ListNode> set = new HashSet<>();
+            while (head != null){
+                if (set.contains(head)){
+                    return head;
+                }
+                set.add(head);
+                head = head.next;
             }
-            return fast;
+//            // 2(f + a)  = f + a + b + a
+//            // 2f + 2a = f + 2a + b
+//            // f = b
+//            ListNode fast = head;
+//            ListNode slow = head;
+//            while (fast != null && fast.next != null) {
+//                fast = fast.next.next;
+//                slow = slow.next;
+//                if (fast == slow) {
+//                    fast = head;
+//                    while (fast != slow) {
+//                        fast = fast.next;
+//                        slow = slow.next;
+//                    }
+//                    return fast;
+//                }
+//            }
+            return null;
+
         }
 
     }

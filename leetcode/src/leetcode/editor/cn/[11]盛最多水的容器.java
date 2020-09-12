@@ -22,30 +22,31 @@ class 盛最多水的容器{
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int maxArea(int[] height) {
-            //    int max = 0;
-            //    for (int i = 0; i < height.length; i++) {
-            //        for (int j = i + 1; j < height.length; j++) {
-            //            int area = (j - i) * Math.min(height[i], height[j]);
-            //            max = Math.max(max,area);
-            //        }
-            //    }
-            //    return max;
-            //}
+            // 暴力解法
+//            int max = 0;
+//            for (int i = 0; i < height.length; i++){
+//                for(int j = i + 1; j < height.length; j++){
+//                    int area = (j - i) * Math.min(height[i],height[j]);
+//                    max = Math.max(max,area);
+//                }
+//            }
+//            return max;
 
-            int max = 0;
-            for (int i = 0, j = height.length - 1; i < j;) {
-                int minHeight = height[i] > height[j] ? height[j--] : height[i++];
-                int area = (j - i + 1) * minHeight;
+               // 双指针法，面积大小取决于两点之间的距离和最短边，两指针往中间走，遇到短边就继续往前走，去寻找更长的边，直到相遇
+            int max= 0;
+            int i = 0;
+            int j = height.length - 1;
+            while(i < j){
+                int h = height[i] < height[j] ? height[i++] : height[j--];
+                int area = (j - i + 1) * h;
                 max = Math.max(max,area);
             }
             return max;
+
+
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
-
-    public static void main(String[] args) {
-
-    }
 
 }
 

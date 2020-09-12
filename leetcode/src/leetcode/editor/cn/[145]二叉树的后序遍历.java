@@ -76,20 +76,6 @@ class 二叉树的后序遍历{
             return list;
         }
 
-        public static void main(String[] args) {
-            LinkedList<Integer> list = new LinkedList<>();
-            list.push(1);
-            list.push(2);
-            list.push(3);
-            System.out.println(list.pop());
-            LinkedList<Integer> deque = new LinkedList();
-            deque.add(1);
-            deque.add(2);
-            deque.add(3);
-            System.out.println(deque.poll());
-
-        }
-
     }
 //leetcode submit region end(Prohibit modification and deletion)
 

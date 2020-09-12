@@ -11,7 +11,7 @@ package leetcode.editor.cn;
 // Related Topics 链表
 
 
-class 反转链表{
+class 反转链表 {
 
 //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -25,34 +25,24 @@ class 反转链表{
      */
     class Solution {
         public ListNode reverseList(ListNode head) {
-            if (head == null){
+            if (head == null || head.next == null) {
                 return head;
             }
-            //ListNode current = head;
-            //ListNode prev = null;
-            //ListNode temp = null;
-            //while (current != null){
-            //    temp = current.next;
-            //    current.next = prev;
-            //    prev = current;
-            //    current = temp;
-            //}
-            //
-            //return prev;
 
-
-            //递归
-            ListNode curr = head;
-            ListNode next = curr.next;
-            if (head == null || next == null) {
-                return curr;
+            ListNode prev = null;
+            while (head != null){
+                ListNode temp = head.next;
+                head.next = prev;
+                prev = head;
+                head = temp;
             }
-            // 1->2->3->4->5->NULL
-            // 5->4->3->2->1->NULL
-            ListNode node = reverseList(next);
-            next.next = head;
-            head.next = null;
-            return node;
+            return prev;
+
+            // 递归
+//            ListNode listNode = reverseList(head.next);
+//            temp.next = head;
+//            head.next = null;
+//            return listNode;
 
         }
 
