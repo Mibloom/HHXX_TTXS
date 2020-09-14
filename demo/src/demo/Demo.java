@@ -2,11 +2,9 @@ package demo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -19,33 +17,19 @@ public class Demo {
 
     public Demo() {
     }
-    static ReentrantLock reentrantLock = new ReentrantLock();
-    public static void main(String[] args) {
 
-        new Thread(() -> {
-            ParkDemo.test();
-        }).start();
-        new Thread(() -> {
-            ParkDemo.test();
-        }).start();
-
-        reentrantLock.lockInterruptibly();
-
-        CountDownLatch downLatch = new CountDownLatch(12);
+    public static final ThreadLocal<String> threadLocal = new ThreadLocal<>();
+    public static void main(String[] args) throws Exception {
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        executorService.execute(()->{
+            System.out.println(Thread.currentThread().getName());
+        });
 
 
     }
 
     static class ParkDemo{
 
-        static void test() {
-            try {
-                reentrantLock.lock();
-                System.out.println("lpklpklpk");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 
 

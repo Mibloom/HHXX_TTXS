@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -22,6 +23,7 @@ public class Test {
         hashMap.put(0, 123);
         hashMap.put(null, 123);
         hashMap.put(4, 123);
+        hashMap.size();
         Test test = new Test();
         new Thread(() -> {
             try {
@@ -62,6 +64,9 @@ public class Test {
             System.out.println(Thread.currentThread().getName());
             wait();
             System.out.println(Thread.currentThread().getName());
+            ConcurrentHashMap<Object, Object> concurrentHashMap = new ConcurrentHashMap<>();
+            concurrentHashMap.put("","");
+
         }
 
     }

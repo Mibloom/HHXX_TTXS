@@ -3,6 +3,7 @@ package leetcode.editor.cn;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 //给定一个二叉树，返回它的中序 遍历。 
 //
 // 示例: 
@@ -20,7 +21,7 @@ import java.util.List;
 // Related Topics 栈 树 哈希表
 
 
-class 二叉树的中序遍历{
+class 二叉树的中序遍历 {
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -38,20 +39,22 @@ class 二叉树的中序遍历{
         private List<Integer> list = new ArrayList<>();
 
         public List<Integer> inorderTraversal(TreeNode root) {
-            //if (root != null) {
-            //    inorderTraversal(root.left);
-            //    list.add(root.val);
-            //    inorderTraversal(root.right);
-            //}
+            if (root == null) {
+                return list;
+            }
+//                inorderTraversal(root.left);
+//                list.add(root.val);
+//                inorderTraversal(root.right);
+//                return list;
 
             //非递归
-            ArrayDeque<TreeNode> deque = new ArrayDeque();
-            while (root != null || !deque.isEmpty()) {
+            Stack<TreeNode> stack = new Stack<>();
+            while (root != null || !stack.empty()) {
                 if (root != null) {
-                    deque.push(root);
+                    stack.push(root);
                     root = root.left;
                 } else {
-                    root = deque.pop();
+                    root = stack.pop();
                     list.add(root.val);
                     root = root.right;
                 }
