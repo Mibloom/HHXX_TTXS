@@ -1,8 +1,6 @@
 package leetcode.editor.cn;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author LIPENGKE
@@ -12,32 +10,34 @@ import java.util.Stack;
 public class 栈和队列用法 {
 
     public static void main(String[] args) {
-        // 栈
-        Stack<Object> stack = new Stack<>();
+//------------------------- 栈 ----------------------------------------//
 
+        // 栈
+        // Stack<Object> stack = new Stack<>();
+
+        ArrayDeque<Object> stack = new ArrayDeque<>();
         // 判空
-        stack.empty();
+        stack.isEmpty();
+        // 入栈，不允许为null
+        stack.push("");
+        // 出栈, 如果是null,抛异常
+        stack.pop();
+        // 出栈, 如果是null,不抛异常，返回null
+        stack.poll();
         // 判断栈顶元素，但是不出栈
         stack.peek();
-        // 出栈
-        stack.pop();
-        // 入栈
-        stack.push("");
-        stack.add("");
-//-----------------------------------------------------------------//
+
+//--------------------------- 队列 --------------------------------------//
         // 队列
-        Deque<Object> deque = new LinkedList<>();
-        // 判断队头元素，但是不出队列
-        deque.peek();
-
+        //Queue<Object> queue = new ArrayDeque<>(); //(频繁的随机访问操作 或者 可以确定容量)
+        Queue<Object> queue = new LinkedList<>(); // (频繁的插入、删除操作)
+        // 获取队头元素，但是不出队列
+        queue.peek();
         // 获取队头元素,如果为空就返回null，不会抛出异常，pop会抛出异常
-        deque.poll();
-
-        // 添加元素
-        deque.push("");
-
-        LinkedList<Object> linkedList = new LinkedList<>();
-
-
+        queue.poll();
+        // 队尾添加元素,越界返回false.
+        queue.offer("");
+        // 队尾添加元素,越界抛异常
+        queue.add("");
     }
 }

@@ -48,14 +48,14 @@ class 二叉树的中序遍历 {
 //                return list;
 
             //非递归
-            Stack<TreeNode> stack = new Stack<>();
-            while (root != null || !stack.empty()) {
-                if (root != null) {
+           Stack<TreeNode> stack = new Stack<>();
+            while (root != null || !stack.empty()){
+                if (root != null){
                     stack.push(root);
                     root = root.left;
-                } else {
-                    root = stack.pop();
-                    list.add(root.val);
+                }else {
+                    TreeNode pop = stack.pop();
+                    list.add(pop.val);
                     root = root.right;
                 }
             }

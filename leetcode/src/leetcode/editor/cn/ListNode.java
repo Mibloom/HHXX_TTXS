@@ -1,5 +1,6 @@
 package leetcode.editor.cn;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 /**
@@ -15,47 +16,53 @@ class ListNode {
     ListNode(int x) {
         val = x;
     }
+
     ListNode() {
     }
 
-    public static ListNode getInstance() {
-        ListNode listNode = new ListNode(1);
-        listNode.next = new ListNode(2);
-        listNode.next.next = new ListNode(3);
-        listNode.next.next.next = new ListNode(4);
-        listNode.next.next.next.next = new ListNode(5);
-        listNode.next.next.next.next.next = new ListNode(6);
-        return listNode;
+    public static ListNode getInstance(int count) {
+        ListNode dummy = new ListNode(Integer.MIN_VALUE);
+        ListNode prev = dummy;
+        for (int c = 1; c <= count; c++) {
+            prev.next = new ListNode(c);
+            prev = prev.next;
+        }
+        return dummy.next;
+    }
+
+    public static ListNode getInstance(int... array) {
+        ListNode dummy = new ListNode(-1);
+        ListNode prev = dummy;
+        for (int i : array) {
+            prev.next = new ListNode(i);
+            prev = prev.next;
+        }
+        return dummy.next;
     }
 
     @Override
     public String toString() {
-        HashSet<ListNode> set = new HashSet<>();
-        set.add(this);
+        HashMap<ListNode, Integer> map = new HashMap<>();
         String string = "ListNode:[";
         StringBuilder builder = new StringBuilder(string);
-        ListNode info = this;
-        builder.append(this.val);
-        while (info.next != null) {
-            set.add(info);
-            if (set.contains(info.next)) {
-                System.out.println("出现循环节点:" + this.val + "-->" + this.next.val);
-                builder.append("-->(");
-                builder.append(this.next);
-                builder.append(")");
-                builder.append("]");
-                return builder.toString();
+        ListNode curr = this;
+        while (curr != null) {
+            map.put(curr, map.size() + 1);
+            if (curr.next != null && map.containsKey(curr.next)) {
+                int currIndex = map.size();
+                int cycIndex = map.get(curr.next);
+                String format = String.format("链表出现环, 第%s位ListNode:[%s]的next指向第%s位ListNode:[%s])",
+                        currIndex, curr.val, cycIndex, curr.next.val);
+                System.err.println(format);
+                curr.next = null;
             }
-            info.next.prev = info;
-            builder.append(",");
-            info = info.next;
-            builder.append(info.val);
+            builder.append(curr.val);
+            curr = curr.next;
+            if (curr != null) {
+                builder.append(",");
+            }
         }
         builder.append("]");
         return builder.toString();
-    }
-
-    public static void main(String[] args) {
-        ListNode.getInstance();
     }
 }
