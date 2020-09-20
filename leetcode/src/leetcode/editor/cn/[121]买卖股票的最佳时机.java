@@ -1,7 +1,8 @@
 package leetcode.editor.cn;
+
 import java.util.*;
 
-class 买卖股票的最佳时机{
+class 买卖股票的最佳时机 {
 
 //给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。 
 //
@@ -29,10 +30,13 @@ class 买卖股票的最佳时机{
 // 👍 1186 👎 0
 
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int maxProfit(int[] prices) {
-        int max = 0;
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int maxProfit(int[] prices) {
+            if (prices.length < 2) {
+                return 0;
+            }
+            int max = 0;
 //        for (int i = 0; i < prices.length; i++) {
 //            for (int j = i + 1; j < prices.length; j++) {
 //                if (prices[i] < prices[j]){
@@ -40,22 +44,40 @@ class Solution {
 //                }
 //            }
 //        }
-        int min = 99999;
-        for (int i = 0; i < prices.length; i++) {
-            if (prices[i] < min){
-                min = prices[i];
+//        int min = Integer.MAX_VALUE;
+//        for (int i = 0; i < prices.length; i++) {
+//            if (prices[i] < min){
+//                min = prices[i];
+//            }
+//            if (prices[i] > min){
+//                max = Math.max(max,prices[i] - min);
+//            }
+
+//            int[] dp = new int[3];
+//            dp[0] = 0; //不买
+//            dp[1] = -prices[0]; // 买入
+//            //dp[2] = dp[1] + prices[i]; // 卖出
+//            for (int i = 0; i < prices.length; i++) {
+//                dp[1] = Math.max(dp[1], -prices[i]); // 买入
+//                dp[2] = Math.max(dp[2], dp[1] + prices[i]); // 卖出
+//            }
+//            return dp[2];
+
+            int[][] dp = new int[prices.length][3];
+            dp[0][0] = 0; // 不买
+            dp[0][1] = -prices[0]; //买入
+            dp[0][2] = Integer.MIN_VALUE; // 卖出
+
+            for (int i = 1; i < prices.length; i++) {
+                dp[i][0] = 0;
+                dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+                dp[i][2] = Math.max(dp[i - 1][2], dp[i - 1][1] + prices[i]);
             }
-            if (prices[i] > min){
-                max = Math.max(max,prices[i] - min);
-            }
+
+            return Math.max(dp[prices.length - 1][0], dp[prices.length - 1][2]);
         }
-        return max;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
-
-
-
 
 
 }

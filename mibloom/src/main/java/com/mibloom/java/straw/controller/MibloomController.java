@@ -1,6 +1,7 @@
 package com.mibloom.java.straw.controller;
 
 import com.mibloom.java.straw.bean.Mibloom;
+import org.apache.catalina.core.ApplicationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -22,5 +23,6 @@ public class MibloomController {
         Mibloom mibloom = new Mibloom(format);
         return ResponseEntity.ok(mibloom);
     }
+
 
 }

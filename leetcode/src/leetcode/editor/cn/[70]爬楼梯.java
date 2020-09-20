@@ -25,34 +25,37 @@ package leetcode.editor.cn;
 // Related Topics 动态规划
 
 
-class 爬楼梯{
+class 爬楼梯 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int climbStairs(int n) {
-            //    if (n <= 2){
-            //        return n;
-            //    }
-            //    int num = 0;
-            //    int n1 = 1;
-            //    int n2 = 2;
-            //    for (int i = 3; i < n+1; i++) {
-            //        num = n1 + n2;
-            //        n1 = n2;
-            //        n2 = num;
-            //    }
-            //    return num;
-            //}
-            if (n == 1) {
-                return 1;
+            if (n <= 2) {
+                return n;
             }
-            if (n == 2){
-                return 2;
+            int num = 0;
+            int n1 = 1;
+            int n2 = 2;
+            for (int i = 3; i < n + 1; i++) {
+                num = n1 + n2;
+                n1 = n2;
+                n2 = num;
             }
-            return   climbStairs(n-1) + climbStairs(n-1);
-        }
-
+            return num;
+//            int[] dp = new int[n+1];
+//            if (n <= 2){
+//                return n;
+//            }
+//            dp[0] = 0;
+//            dp[1] = 1;
+//            dp[2] = 2;
+//            for (int i = 3; i < n + 1; i++) {
+//                dp[i] = dp[i - 1] + dp[i - 2];
+//            }
+//            return dp[n];
     }
+
+}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
