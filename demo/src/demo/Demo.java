@@ -20,11 +20,7 @@ public class Demo {
 
     public static final ThreadLocal<String> threadLocal = new ThreadLocal<>();
     public static void main(String[] args) throws Exception {
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
-        executorService.execute(()->{
-            System.out.println(Thread.currentThread().getName());
-        });
-
+        System.out.println(Math.pow(4,2) == 16);
 
     }
 

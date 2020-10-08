@@ -11,7 +11,7 @@ public class 栈和队列用法 {
 
     public static void main(String[] args) {
 //------------------------- 栈 ----------------------------------------//
-
+        String[] split = "dfsfasdf".split("");
         // 栈
         // Stack<Object> stack = new Stack<>();
 
