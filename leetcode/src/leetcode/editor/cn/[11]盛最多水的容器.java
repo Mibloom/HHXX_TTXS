@@ -42,8 +42,7 @@ class 盛最多水的容器{
                 max = Math.max(max,area);
             }
             return max;
-
-
+            
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

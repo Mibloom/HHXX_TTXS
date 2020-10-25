@@ -57,8 +57,8 @@ class 平衡二叉树{
                 return true;
             }
             return deep(root) != -1;
-        }
 
+        }
         private int deep(TreeNode root){
             if (root == null){
                 return 0;
@@ -73,7 +73,6 @@ class 平衡二叉树{
             }
             return Math.abs(rightDeep-leftDeep) <= 1 ? Math.max(rightDeep,leftDeep) + 1 : -1;
         }
-
 
     }
 //leetcode submit region end(Prohibit modification and deletion)

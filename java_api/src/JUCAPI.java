@@ -29,11 +29,20 @@ public class JUCAPI {
         countDownLatch.getCount();
         // 4. 同步队列BlockingQueue的实现
         SynchronousQueue<Runnable> synchronousQueue = new SynchronousQueue<>();
-        synchronousQueue.peek();
+       // synchronousQueue.take();
+        synchronousQueue.poll();
+        ArrayBlockingQueue<Runnable> arrayBlockingQueue = new ArrayBlockingQueue<Runnable>(10);
+        arrayBlockingQueue.add(null);
+        LinkedBlockingQueue<Runnable> linkedBlockingQueue = new LinkedBlockingQueue<>();
+
+
         // 5.和线程池相关的类
         ExecutorService executorService = Executors.newSingleThreadExecutor();
-        new ThreadPoolExecutor(12, 12, 60, TimeUnit.MINUTES,
-            synchronousQueue);
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(12, 12, 60, TimeUnit.MINUTES,
+                synchronousQueue);
+        pool.execute(() -> {
+            System.out.println("线程池");
+        });
 
         new Thread(() -> {
             JUCAPI jucapi = new JUCAPI();
@@ -51,6 +60,7 @@ public class JUCAPI {
                 e.printStackTrace();
             }
         }).start();
+
 
         // monitor monitor exit monitor enter  On Deck
 

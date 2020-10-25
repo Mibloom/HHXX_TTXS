@@ -37,9 +37,11 @@ class Solution {
             return 0;
         }
         int max = 0;
-//        for (int i = 0; i < s.length(); i++) {
+        // 暴力法，2层for循环，遍历所有子串，记录长度
+        int len = s.length();
+//        for (int i = 0; i < len - 1; i++) {
 //            ArrayList<Character> list = new ArrayList<>();
-//            for (int j = i; j < s.length(); j++) {
+//            for (int j = i; j < len; j++) {
 //                if (list.contains(s.charAt(j))){
 //                    break;
 //                }
@@ -47,15 +49,16 @@ class Solution {
 //                max = Math.max(max,list.size());
 //            }
 //        }
+
+        // 滑动窗口法，start和end指针中间为不重复子串，用map保存走过的值
         HashMap<Character, Integer> map = new HashMap<>();
-        for (int start = 0, end = 0; end < s.length(); end++) {
+        for (int end = 0, start = 0; end < len; end++) {
             char c = s.charAt(end);
             if (map.containsKey(c)){
-                start = Math.max(map.get(c) + 1,start); // 防止star左移
+                start = Math.max(map.get(c) + 1, start);
             }
             map.put(c,end);
-            max = Math.max(max,end - start + 1);
-
+            max = Math.max(max, end - start + 1);
         }
         return max;
     }

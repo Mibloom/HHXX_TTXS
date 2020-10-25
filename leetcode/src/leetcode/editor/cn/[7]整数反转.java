@@ -42,7 +42,7 @@ class Solution {
             }
             x = x / 10;
         }
-        return (int)res;
+        return (int) res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

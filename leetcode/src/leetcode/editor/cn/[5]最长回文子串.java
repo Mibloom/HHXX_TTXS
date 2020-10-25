@@ -29,6 +29,7 @@ class Solution {
         }
         int start = 0;
         int max = 1;
+        // 暴力法 遍历所有子串，判断子串是否是回文同时记录回文长度和开始位置
 //        for (int i = 0; i < s.length() - 1; i++) {
 //            for (int j = i + 1; j < s.length(); j++) {
 //                if (j - i + 1 > max && helper(i,j,s)){
@@ -38,6 +39,8 @@ class Solution {
 //            }
 //        }
         int len = s.length();
+        // dp[i][j] i 到 j 是回文字符串， 状态转移： 回文字符串它的子串也是回文
+        // 记录最长回文字符串长度，并且记录下开始位置。
         boolean[][] dp = new boolean[len][len];
         for (int i = 0; i < len; i++) {
             dp[i][i] = true;
